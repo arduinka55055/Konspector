@@ -24,6 +24,7 @@
         string q = await generator.GenerateText(quote, cts.Token);
         quote = q;
         //indicate that the operation is complete
+        cts.Dispose();
         cts = new CancellationTokenSource();
         //update the UI
         StateHasChanged();

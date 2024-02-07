@@ -22,4 +22,10 @@ public class AITests
         Assert.IsNotNull(text);
         Assert.That(text, Is.Not.EqualTo("Error"));
     }
+    [Test]
+    public void Test2()
+    {
+        Konspector.Services.GDrive.Run().Wait();
+        Assert.Pass();
+    }
 }
