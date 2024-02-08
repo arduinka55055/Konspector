@@ -1,6 +1,6 @@
 ﻿
 @page "/counter"
-
+@using Konspector.Misc
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
@@ -12,12 +12,29 @@
 <button class="btn btn-primary" @onclick="lol">Click me</button>
 <button class="btn btn-primary" @onclick="cts.Cancel">Cancel</button>
 
+<div class="HTMLContent">@test</div>
+
 @code {
     private string quote = "Hello, world!";
+    private MarkupString test = new MarkupString("<p>Test</p>");
     CancellationTokenSource cts = new CancellationTokenSource();
     private int currentCount = 0;
 
-    private void IncrementCount() => currentCount++;
+    private async void IncrementCount() {
+        currentCount++;
+        var result = await OpenFile.PickDefault();
+        Console.WriteLine(result);
+        using var stream = await result.OpenReadAsync();
+        var buffer = new byte[stream.Length];
+        await stream.ReadAsync(buffer.AsMemory(0, buffer.Length));
+        var content = System.Text.Encoding.UTF8.GetString(buffer);
+        Console.WriteLine($"File content: {content}");
+        //set DOM to html content
+        test = (MarkupString)content;
+        StateHasChanged();
+
+
+    }
     private async void lol()
     {
         Interfaces.ITextGenerator generator = new Services.OllamaGenerator();

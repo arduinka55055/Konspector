@@ -11,4 +11,56 @@
         </BlazorWebView.RootComponents>
     </BlazorWebView>
 
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="App">
+            <MenuFlyoutItem Text="Preferences"
+                            Command="{Binding PreferencesCommand}" />
+            <MenuFlyoutItem Text="About"
+                            Command="{Binding AboutCommand}" />
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem Text="Exit"
+                            Command="{Binding ExitCommand}" />
+        </MenuBarItem>
+        <MenuBarItem Text="File">
+            <MenuFlyoutItem Text="New"
+                            Command="{Binding ExitCommand}" />
+            <MenuFlyoutItem Text="Open"
+                            Command="{Binding ExitCommand}" />
+            <MenuFlyoutItem Text="Save"
+                            Command="{Binding ExitCommand}" />
+            <MenuFlyoutItem Text="Save As"
+                            Command="{Binding ExitCommand}" />
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem Text="Export"
+                            Command="{Binding ExitCommand}" />
+                
+        </MenuBarItem>
+        <MenuBarItem Text="Locations">
+            <MenuFlyoutSubItem Text="Change Location">
+                <MenuFlyoutItem Text="Redmond, USA"
+                                Command="{Binding ChangeLocationCommand}"
+                                CommandParameter="Redmond" />
+                <MenuFlyoutItem Text="London, UK"
+                                Command="{Binding ChangeLocationCommand}"
+                                CommandParameter="London" />
+                <MenuFlyoutItem Text="Berlin, DE"
+                                Command="{Binding ChangeLocationCommand}"
+                                CommandParameter="Berlin"/>
+            </MenuFlyoutSubItem>
+            <MenuFlyoutSeparator />            
+            <MenuFlyoutItem Text="Add Location"
+                            Command="{Binding AddLocationCommand}" />
+            <MenuFlyoutItem Text="Edit Location"
+                            Command="{Binding EditLocationCommand}" />
+            <MenuFlyoutItem Text="Remove Location"
+                            Command="{Binding RemoveLocationCommand}" />                            
+        </MenuBarItem>
+        <MenuBarItem Text="View">
+            <MenuFlyoutItem Text="Refresh"
+                            Command="{Binding RefreshCommand}" />
+            <MenuFlyoutItem Text="Change Theme"
+                            Command="{Binding ChangeThemeCommand}" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
 </ContentPage>
