@@ -13,7 +13,7 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 			});
-
+		ConfigureApp.Configure(builder);
 		builder.Services.AddMauiBlazorWebView();
 
 #if DEBUG
