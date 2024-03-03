@@ -8,5 +8,9 @@ public static class ConfigureApp{
         builder.Services.AddLogging(logging => logging.AddConsole());
         //use Konspector.Misc.Settings
         builder.Services.AddSingleton<Settings>();
+        #if DEBUG
+    builder.Services.AddBlazorWebViewDeveloperTools();
+    builder.Logging.AddDebug();
+#endif
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 @page "/counter"
 @using Konspector.Misc
+@inject IJSRuntime JSRuntime
 <h1>Counter</h1>
 
 <p role="status">Current count: @currentCount</p>
@@ -12,9 +13,20 @@
 <button class="btn btn-primary" @onclick="lol">Click me</button>
 <button class="btn btn-primary" @onclick="cts.Cancel">Cancel</button>
 
-<div class="HTMLContent">@test</div>
+<div @ref="_inputElement" contenteditable="true" @onchange="HandleChange" @onkeydown="HandleKeyDown" class="HTMLContent">
+    @((MarkupString)test)
+</div>
+<button class="btn btn-primary" @onclick="BoldText">Bold</button>
 
 @code {
+
+    public class SelectionRange
+    {
+        public int Start { get; set; }
+        public int End { get; set; }
+    }
+
+    private ElementReference _inputElement;
     private string quote = "Hello, world!";
     private MarkupString test = new MarkupString("<p>Test</p>");
     CancellationTokenSource cts = new CancellationTokenSource();
@@ -32,8 +44,6 @@
         //set DOM to html content
         test = (MarkupString)content;
         StateHasChanged();
-
-
     }
     private async void lol()
     {
@@ -46,4 +56,52 @@
         //update the UI
         StateHasChanged();
     }
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        // Handle keydown events, e.Key will give you the key pressed
+        if (e.CtrlKey && e.Key == "z")
+        {
+            // ctrl z - for now just add NOTIMPL str
+           test = new MarkupString(test.Value + "NOTIMPL_CTRLZ");
+        }
+        Console.WriteLine(e.Key);
+        test = new MarkupString(test.Value + e.Key);
+        //update the UI
+        StateHasChanged();
+    }
+
+    private void HandleChange(ChangeEventArgs e)
+    {
+        // Handle change events, e.Value will give you the new value
+        Console.WriteLine(e.Value);
+        test = new MarkupString(e.Value.ToString());
+    }
+   //bold selected text when button is clicked
+    private async Task BoldText()
+    {
+        //get selected text
+        var idx = await GetSelectionStartEnd();
+        //bold it
+        var initial = test.Value;
+        test = new MarkupString(initial.Insert(idx.Start, "<b>").Insert(idx.End + 3, "</b>"));
+
+        //update the UI
+        StateHasChanged();
+    }
+    private async Task<SelectionRange> GetSelectionStartEnd()
+    {
+       /*
+       1. check window.getSelection().anchorNode class
+       2. get start and end of selection via window.getSelection().anchorOffset and window.getSelection().focusOffset
+         3. return start and end
+         */
+        //js interop\
+         var result = await JSRuntime.InvokeAsync<System.Text.Json.JsonElement>("getSelectionStartEnd", [_inputElement]);
+        //extract start and end from Selection object
+        //var start = await result.InvokeAsync<int>("getStart");
+        //var end = await result.InvokeAsync<int>("getEnd");
+        return new SelectionRange { Start = result.GetProperty("start").GetInt32(), End = result.GetProperty("end").GetInt32() };
+    }
+
 }
