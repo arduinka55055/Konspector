@@ -9,7 +9,7 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 <input type="number" @bind="currentCount" />
 <!--huge editable text area-->
-<textarea class="form-control" rows="10" @bind="quote"></textarea>
+<textarea class="form-control" rows="10" @bind="@quote"></textarea>
 <button class="btn btn-primary" @onclick="lol">Click me</button>
 <button class="btn btn-primary" @onclick="cts.Cancel">Cancel</button>
 
@@ -27,7 +27,8 @@
     }
 
     private ElementReference _inputElement;
-    private string quote = "Hello, world!";
+    private string quote = "test";
+    private string quotee = "test";
     private MarkupString test = new MarkupString("<p>Test</p>");
     CancellationTokenSource cts = new CancellationTokenSource();
     private int currentCount = 0;
@@ -36,6 +37,10 @@
         currentCount++;
         var result = await OpenFile.PickDefault();
         Console.WriteLine(result);
+        if (result == null)
+        {
+            return;
+        }
         using var stream = await result.OpenReadAsync();
         var buffer = new byte[stream.Length];
         await stream.ReadAsync(buffer.AsMemory(0, buffer.Length));
@@ -48,8 +53,11 @@
     private async void lol()
     {
         Interfaces.ITextGenerator generator = new Services.OllamaGenerator();
-        string q = await generator.GenerateText(quote, cts.Token);
-        quote = q;
+        await generator.GenerateTextS("why is the sky blue?", async (System.Text.StringBuilder s) => {
+            quote=s.ToString();
+            await Task.Delay(10);
+            StateHasChanged();
+        }, cts.Token);
         //indicate that the operation is complete
         cts.Dispose();
         cts = new CancellationTokenSource();
