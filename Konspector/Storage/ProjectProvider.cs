@@ -13,6 +13,8 @@ public class ProjectProvider{
             loadProject();
         else
             createProject();
+            
+        setParent();
     }
     public void createProject(){
         project = new Project();
@@ -56,4 +58,42 @@ public class ProjectProvider{
         serializer.Serialize(writer, project);
     }
 
+    private void setParent(){
+        setParent(project);
+    } 
+    //recursive rewrite of setParent
+    private void setParent(object obj, uint depth = 0){
+        if(depth > 10) return;
+        if(obj is ItemBase ib)
+            ib._root = this;
+        foreach(var prop in obj.GetType().GetProperties()){
+            if(prop.PropertyType.IsGenericType){
+                if (prop.GetValue(obj) is not IEnumerable<object> listObj) continue;
+                foreach (var item in listObj){
+                    setParent(item, depth + 1);
+                }
+            }
+        }
+    }
+
+    public ItemBase? GetElementById(Guid dst)
+    {
+        return GetElementById(project, dst);
+    }
+    internal ItemBase? GetElementById(object obj, Guid dst)
+    {
+        if(obj is ItemBase ib && ib.Id == dst)
+            return ib;
+        foreach(var prop in obj.GetType().GetProperties()){
+            if(prop.PropertyType.IsGenericType){
+                if (prop.GetValue(obj) is not IEnumerable<object> listObj) continue;
+                foreach (var item in listObj){
+                    var res = GetElementById(item, dst);
+                    if(res != null)
+                        return res;
+                }
+            }
+        }
+        return null;
+    }
 }

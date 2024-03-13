@@ -10,7 +10,7 @@ namespace Konspector.Storage;
 
 public class ItemBase{
     [XmlIgnore]
-    protected XmlDocument _root;
+    internal ProjectProvider _root;
     [XmlAttribute("id")]
     public Guid Id { get; set; } = Guid.NewGuid();
     [XmlAttribute("title")]
@@ -31,4 +31,9 @@ public class ItemBase{
     //we want to access this
     [XmlIgnore]
     public System.Drawing.Color color { get; set; } = System.Drawing.Color.FromArgb(0, 0, 0);
+
+    public List<ItemBase> GetReferences()
+    {
+        return _root.project.Refs.FindAll(r => r.Src == Id).ConvertAll(r => _root.GetElementById(r.Dst)!);
+    }    
 }

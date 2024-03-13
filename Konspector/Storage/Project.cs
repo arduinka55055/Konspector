@@ -66,5 +66,4 @@ public class Project
     [XmlArrayItem("ref")]
     public List<Ref> Refs { get; set; } = [];
     
-
 }
