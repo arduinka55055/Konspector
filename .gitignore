@@ -1,4 +1,8 @@
 bin
 obj
 credentials*
+*.xml
+*.txt
+#exclude Content.txt
+!Content.txt
 .vs
