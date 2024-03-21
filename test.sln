@@ -3,26 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Konspector", "Konspector\Konspector.csproj", "{31441965-38B6-45EC-8A86-C8BC996CEC4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Konspector", "Konspector\Konspector.csproj", "{31441965-38B6-45EC-8A86-C8BC996CEC4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBlazorApp1", "TestBlazorApp1\TestBlazorApp1.csproj", "{7A5BF335-AF3B-40D0-8845-79207BCBF25A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestBlazorApp1", "TestBlazorApp1\TestBlazorApp1.csproj", "{7A5BF335-AF3B-40D0-8845-79207BCBF25A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{31441965-38B6-45EC-8A86-C8BC996CEC4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{31441965-38B6-45EC-8A86-C8BC996CEC4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31441965-38B6-45EC-8A86-C8BC996CEC4B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{31441965-38B6-45EC-8A86-C8BC996CEC4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31441965-38B6-45EC-8A86-C8BC996CEC4B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A5BF335-AF3B-40D0-8845-79207BCBF25A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A5BF335-AF3B-40D0-8845-79207BCBF25A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A5BF335-AF3B-40D0-8845-79207BCBF25A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A5BF335-AF3B-40D0-8845-79207BCBF25A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

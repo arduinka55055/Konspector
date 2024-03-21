@@ -10,3 +10,12 @@ window.getSelectionStartEnd = function(element) {
         end: start + range.toString().length
     };
 };
+
+document.addEventListener(".HTMLContent", onInput);
+function onInput(e) {
+ let target = e.target;
+ if (target.localName == "div") {
+   if (!target.value && !target.__contenteditable) target.__contenteditable = true;
+   if (target.__contenteditable) target.value = target.innerText;
+ }
+}
