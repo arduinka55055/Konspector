@@ -1,0 +1,70 @@
+﻿.textor-content {
+   display: flex;
+   height: 100vh;
+}
+
+.textor-main-container {
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+}
+
+.textor-panel {
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+   background-color: #f8f9fa;
+   border-bottom: 1px solid #dee2e6;
+}
+
+.textor-editor {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+}
+
+.textor-toolbar {
+   display: flex;
+   justify-content: space-around;
+   padding: 10px;
+   background-color: #f8f9fa;
+   border-bottom: 1px solid #dee2e6;
+}
+
+.main {
+   flex-grow: 1;
+   display: flex;
+   padding: 10px;
+}
+
+.textor-textarea {
+   width: 100%;
+   height: 100%;
+   border: none;
+   resize: none;
+}
+
+.textor-sidebar {
+   width: 20%;
+   border-left: 1px solid #dee2e6;
+}
+
+.textor-sidebar-head {
+   padding: 10px;
+   background-color: #f8f9fa;
+   border-bottom: 1px solid #dee2e6;
+}
+
+.textor-sidebar-list {
+   padding: 10px;
+}
+
+.textor-sidebar-item {
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+}
+
+.textor-sidebar-label {
+   margin-left: 10px;
+}

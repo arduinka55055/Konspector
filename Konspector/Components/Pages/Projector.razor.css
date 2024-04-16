@@ -1,0 +1,83 @@
+﻿.projector-content {
+   display: flex;
+   justify-content: space-between;
+}
+
+.projector-main-container {
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+}
+
+.projector-panel {
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+   background-color: #f0f0f0;
+}
+
+.projector-editor {
+   display: flex;
+   flex-direction: column;
+   margin-top: 20px;
+}
+
+.projector-add-column {
+   display: flex;
+   justify-content: center;
+   padding: 10px;
+   background-color: #e0e0e0;
+}
+
+.main {
+   display: flex;
+   justify-content: space-between;
+   padding: 20px;
+   background-color: #d0d0d0;
+}
+
+.kanban-column {
+   width: 20%;
+   display: flex;
+   flex-direction: column;
+   margin-right: 10px;
+   background-color: #c0c0c0;
+}
+
+.kanban-column-header,
+.kanban-column-body,
+.kanban-column-footer {
+   padding: 10px;
+   background-color: #b0b0b0;
+}
+
+.kanban-item {
+   margin-bottom: 10px;
+   padding: 10px;
+   background-color: #a0a0a0;
+}
+
+.projector-sidebar {
+   width: 20%;
+   display: flex;
+   flex-direction: column;
+   padding: 20px;
+   background-color: #f0f0f0;
+}
+
+.projector-sidebar-head {
+   padding: 10px;
+   background-color: #e0e0e0;
+}
+
+.projector-sidebar-list {
+   display: flex;
+   flex-direction: column;
+   margin-top: 20px;
+}
+
+.projector-sidebar-item {
+   margin-bottom: 10px;
+   padding: 10px;
+   background-color: #d0d0d0;
+}
