@@ -1,14 +1,16 @@
 //basic XML serialization/deserialization and many to many junctions
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace Konspector.Storage;
 
-public class ItemBase{
+public class ItemBase {
     [XmlIgnore]
     internal ProjectProvider _root;
     [XmlAttribute("id")]
@@ -31,6 +33,7 @@ public class ItemBase{
     //we want to access this
     [XmlIgnore]
     public System.Drawing.Color color { get; set; } = System.Drawing.Color.FromArgb(0, 0, 0);
+
 
     public List<ItemBase> GetReferences()
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Konspector.Storage;
+using Microsoft.Extensions.Logging;
 
 namespace Konspector;
 
@@ -15,6 +16,7 @@ public static class MauiProgram
 			});
 		ConfigureApp.Configure(builder);
 		builder.Services.AddMauiBlazorWebView();
+		builder.Services.AddSingleton<ProjectProvider>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();

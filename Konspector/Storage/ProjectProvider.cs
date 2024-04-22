@@ -6,7 +6,9 @@ namespace Konspector.Storage;
 public class ProjectProvider{
     private string _path;
     public Project project;
-    public ProjectProvider(string path){
+    public ProjectProvider(string? path =null){
+        if(path == null)
+            path = "D:/project.xml";
         _path = path;
         
         if(File.Exists(_path))

@@ -1,4 +1,11 @@
 ﻿@page "/projector"
+@using System.Text.Json
+@inject Konspector.Storage.ProjectProvider pp
+@inject IJSRuntime JSRuntime
+
+@{
+    var Kanbans = pp.project.Kanbans;
+}
 
 <div class="projector-content">
     <div class="projector-main-container">
@@ -13,19 +20,19 @@
                 <button class="projector-add-column-button">Add Column</button>
             </div>
             <div class="main">
-                @for (int j = 0; j < 4; j++)
+                @foreach (var kanban in Kanbans)
                 {
                     <div class="kanban-column">
                         <div class="kanban-column-header">
-                            <div class="kanban-column-title">Column Title @j</div>
+                            <div class="kanban-column-title">@kanban.Title</div>
                             <div class="kanban-column-delete">icon here</div>
                         </div>
-                        <div class="kanban-column-body">
-                            @for (int i = 0; i < j; i++)
+                        <div class="kanban-column-body" @onmouseup="(e)=>HandleMouseUp(kanban,e)">
+                            @foreach (var item in kanban.Items)
                             {
-                                <div class="kanban-item">
+                                <div class="kanban-item" draggable="false" id="@(item.GetHashCode())" @onmousedown="()=>HandleMouseDown(kanban, item)">
                                     <div class="kanban-item-head">
-                                        <span>Title @i (@j)</span>
+                                        <span>@item.Title</span>
                                         <div class="kanban-item-edit">icon here</div>
                                     </div>
                                     <div class="kanban-item-delete">icon here</div>
@@ -56,3 +63,74 @@
         </div>
     </div>
 </div>
+<script>
+    function DOMRect(id) {
+        var element = document.getElementById(id);
+        return element.getBoundingClientRect();
+    }
+</script>
+@code {
+    private Storage.KanbanItem? rememberKanban = null;
+    private Storage.KanbanColumn? rememberColumn = null;
+    private void HandleMouseDown(Storage.KanbanColumn column, Storage.KanbanItem item)
+    {
+        rememberKanban = item;
+        rememberColumn = column;
+    }
+
+    class Rect
+    {
+        public double x { get; set; }
+        public double y { get; set; }
+        public double width { get; set; }
+        public double height { get; set; }
+        public double top { get; set; }
+        public double right { get; set; }
+        public double bottom { get; set; }
+        public double left { get; set; }
+    }
+
+    private async void HandleMouseUp(Storage.KanbanColumn column, MouseEventArgs e)
+    {
+        try
+        {
+            if (rememberKanban != null && rememberColumn != null)
+            {
+                //compute new index based on mouse position
+                //compute boundingclientrect of column
+                List<double> positions = new List<double>();
+                foreach (var item in column.Items)
+                {
+                     //"{"x":280,"y":376,"width":236.95,"height":92,"top":376,"right":516.95,"bottom":468,"left":280}"
+                     Rect rect = await JSRuntime.InvokeAsync<Rect>("DOMRect", [item.GetHashCode()]);
+                     if (rect != null)
+                           positions.Add((double)(rect.y + rect.height / 2));
+                }
+                double mouseY = e.ClientY;
+                int index = 0;
+                for (int i = 0; i < positions.Count; i++)
+                {
+                    if (mouseY > positions[i])
+                    {
+                        index = i + 1;
+                    }
+                }
+
+                index = Math.Min(index, column.Items.Count - 1);
+
+                rememberColumn.Items.Remove(rememberKanban);
+                column.Items.Insert(index, rememberKanban);
+
+
+
+
+                rememberKanban = null;
+                rememberColumn = null;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+}

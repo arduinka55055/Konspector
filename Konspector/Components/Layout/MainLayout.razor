@@ -1,4 +1,7 @@
 ﻿@inherits LayoutComponentBase
+@inject IJSRuntime JSRuntime
+@inject Konspector.Storage.ProjectProvider pp
+
 
 <!--Це головний шаблон для всіх сторінок-->
 <div class="page">
@@ -8,11 +11,30 @@
     </div>
 
     <main>
-         <!--панелька зверху-->
+        <!--панелька зверху-->
         <div class="top-row px-4">
             Останні
+
+
         </div>
         <!--основний контент-->
-         @Body<!--замість цієї штуковини буде підставлятися вкладка яку ми вибрали-->
+        @Body<!--замість цієї штуковини буде підставлятися вкладка яку ми вибрали-->
     </main>
 </div>
+@code {
+
+    //public void requestSave(object? e=null)
+    //{
+        //pp.saveProject();
+    //}
+
+    //bind onkeydown to the window
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+           //use capture
+            //JSRuntime.InvokeVoidAsync("window.addEventListener", "keydown", DotNetObjectReference.Create(this), "onkeydown", true);
+        }
+    }
+}

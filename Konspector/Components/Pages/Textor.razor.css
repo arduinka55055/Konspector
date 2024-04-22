@@ -23,7 +23,7 @@
    height: 100%;
 }
 
-.textor-toolbar {
+ql-toolbar {
    display: flex;
    justify-content: space-around;
    padding: 10px;
@@ -31,13 +31,10 @@
    border-bottom: 1px solid #dee2e6;
 }
 
-.main {
+.ql-editor {
    flex-grow: 1;
    display: flex;
    padding: 10px;
-}
-
-.textor-textarea {
    width: 100%;
    height: 100%;
    border: none;

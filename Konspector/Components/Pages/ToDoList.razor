@@ -1,42 +1,52 @@
-﻿
-@page "/todolist"
+﻿@page "/todolist"
+@inject Konspector.Storage.ProjectProvider pp
 
+@code {
+    Storage.TodoList? chosenTodo = null;
+}
+@{
+    var Todos = pp.project.Todos;
+      if(chosenTodo == null)
+    {
+        chosenTodo = pp.project.Todos[0];
+    }
+
+}
 <div class="todo-content">
-   <div class="todo-main-container">
-      <div class="todo-panel">
-         <button class="todo-label">Todos for today</button>
-         <button class="todo-add-panel">icon here</button>
-         <button class="todo-save">save</button>
-         <button class="todo-edit">edit</button>
-      </div>
-      <div class="todo-body">
-         @for(int i = 0; i < 5; i++)
-         {
-         <div class="todo-item">
-            <input type="checkbox" class="todo-checkbox" />
-            <input type="text" class="todo-text" />
-            <button class="todo-delete" style="display:none">delete icon</button>
-         </div>
-         }
-      </div>
-   </div>
+    <div class="todo-main-container">
+        <div class="todo-panel">
+            <button class="todo-label">Todos for today</button>
+            <button class="todo-add-panel">icon here</button>
+            <button class="todo-save">save</button>
+            <button class="todo-edit">edit</button>
+        </div>
+        <div class="todo-body">
+            @foreach (var todo in chosenTodo.Items)
+            {
+                <div class="todo-item">
+                    <input type="checkbox" class="todo-checkbox" @bind="todo.IsDone" @bind:after="pp.saveProject" />
+                    <input type="text" class="todo-text" @bind="todo.Title" @bind:after="pp.saveProject" />
+                    <button class="todo-delete" @onclick="()=>{chosenTodo.Items.Remove(todo); pp.saveProject();}">delete icon</button>
+                </div>
+            }
+            <button @onclick="()=>{chosenTodo.Items.Add(new Konspector.Storage.TodoItem()); pp.saveProject();}">Add</button>
+        </div>
+    </div>
 
-   <div class="todo-sidebar">
-       @for(int i = 0; i < 5; i++)
-       {
-           <div class="todo-mini">
-               <div class="todo-mini-label">Summer holidays plan</div>
-               <div class="todo-mini-body">
-                  @for (int j = 0; j < 5; j++)
-                  {
-                      <div class="todo-item">
-                           <input type="checkbox" class="todo-checkbox" />
-                           <input type="text" class="todo-text" />
-                           <button class="todo-delete" style="display:none">delete icon</button>
-                     </div>
-                  }
-               </div>
-           </div>
-       }
-   </div>
+    <div class="todo-sidebar">
+        @foreach(var todo in Todos.Where(t=>t!=chosenTodo)){
+            <div class="todo-mini" >
+                <div class="todo-mini-label" @onclick="()=>{chosenTodo=todo;}">Summer holidays plan</div>
+                <div class="todo-mini-body">
+                    @foreach (var item in todo.Items)
+                    {
+                        <div class="todo-item">
+                            <input type="checkbox" class="todo-checkbox" disabled @bind="item.IsDone"/>
+                            <input type="text" class="todo-text" disabled @bind="item.Title"/>"
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
 </div>
