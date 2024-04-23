@@ -16,9 +16,9 @@
     <div class="todo-main-container">
         <div class="todo-panel">
             <button class="todo-label">Todos for today</button>
-            <button class="todo-add-panel">icon here</button>
-            <button class="todo-save">save</button>
-            <button class="todo-edit">edit</button>
+            <button class="todo-add-panel"> <i class="fa fa-plus"></i> </button>
+            <button class="todo-save"> <i class="fa fa-save"></i> </button>
+            <button class="todo-edit"> <i class="fa fa-edit"></i> </button>
         </div>
         <div class="todo-body">
             @foreach (var todo in chosenTodo.Items)
@@ -26,7 +26,7 @@
                 <div class="todo-item">
                     <input type="checkbox" class="todo-checkbox" @bind="todo.IsDone" @bind:after="pp.saveProject" />
                     <input type="text" class="todo-text" @bind="todo.Title" @bind:after="pp.saveProject" />
-                    <button class="todo-delete" @onclick="()=>{chosenTodo.Items.Remove(todo); pp.saveProject();}">delete icon</button>
+                    <button class="todo-delete" @onclick="()=>{chosenTodo.Items.Remove(todo); pp.saveProject();}"><i class="fa fa-trash"></i></button>
                 </div>
             }
             <button @onclick="()=>{chosenTodo.Items.Add(new Konspector.Storage.TodoItem()); pp.saveProject();}">Add</button>

@@ -1,4 +1,5 @@
 using System.Xml.Serialization;
+using Konspector.Misc;
 using Color = System.Drawing.Color;
 namespace Konspector.Storage;
 
@@ -6,10 +7,8 @@ namespace Konspector.Storage;
 public class ProjectProvider{
     private string _path;
     public Project project;
-    public ProjectProvider(string? path =null){
-        if(path == null)
-            path = "D:/project.xml";
-        _path = path;
+    public ProjectProvider(Settings settings){
+        _path = settings.AppDirectory + "\\project.xml";
         
         if(File.Exists(_path))
             loadProject();

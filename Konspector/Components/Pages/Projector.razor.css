@@ -51,6 +51,12 @@
    background-color: #b0b0b0;
 }
 
+.kanban-column-body {
+   padding-top: 10px;
+   padding-bottom: 10px;
+   background-color: #aaa;
+} 
+
 .kanban-item {
    margin-bottom: 10px;
    padding: 10px;
@@ -80,4 +86,18 @@
    margin-bottom: 10px;
    padding: 10px;
    background-color: #d0d0d0;
+}
+
+/*user-select: none for everything but input fields*/
+* {
+   -webkit-user-select: none;
+   user-select: none;
+}
+input {
+   -webkit-user-select: text;
+   user-select: text;
+}
+*[contenteditable="true"] {
+   -webkit-user-select: text;
+   user-select: text;
 }

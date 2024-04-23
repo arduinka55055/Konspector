@@ -33,6 +33,13 @@
     top: -1px;
     background-size: cover;
 }
+
+.bi.fa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.3em;
+}
 .flex-column {
    display: flex !important;
 }
