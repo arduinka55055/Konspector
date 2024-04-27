@@ -14,6 +14,7 @@ input {
 
 
 .todo-content {
+   padding-left:15px;
    display: flex;
    flex-direction: row;
    justify-content: space-between;
@@ -30,10 +31,16 @@ input {
 .todo-panel {
    display: flex;
    width: 100%;
+   align-items: center;
+   display: flex;
  }
 
 .todo-label {
    margin-right: auto !important;
+   height: min-content;
+   background-color: RGBA(0,0,0,0.25);
+   color: white;
+   padding: 10px;
 }
 
 .todo-panel button {
@@ -58,6 +65,8 @@ input {
 
 .todo-checkbox {
    margin-right: 16px;
+   width: 20px;
+   height: 20px;
 }
 
 .todo-text {
@@ -86,4 +95,21 @@ input {
    -webkit-border-top-right-radius: 5px;
    background-color: #BAC2DE;
    padding: 16px;
+}
+
+.todo-delete {
+   background-color: #0000;
+   border: none;
+   float: right;
+}
+
+.todo-add-item {
+   height: min-content;
+   border: none;
+   background-color: RGBA(0,0,0,0.25);
+   color: white;
+   padding: 10px;
+   padding-left: 20px;
+   padding-right: 20px;
+   border-radius: 5px;
 }

@@ -12,7 +12,7 @@ namespace Konspector.Services
         public static readonly string PROMPT_EN = "You're a personal note-taking companion. I want you to use the following lecture material and answer my questions about it.\n\n Here's the material you need to know:\n";
         public static readonly string PROMPT_UA = "Ти мій персональний помічник з нотаток. Я хочу, щоб ти використовував наступний лекційний матеріал та відповідав на мої питання про нього. Притримуйся матеріалу, але не уникай додаткових розʼяснень. Відповідай українською завжди.\n\n Ось матеріал, який тобі потрібно знати:\n";
         public string Provider => "Ollama";
-        public string ModelName { get; set; } = "llama2";//"wizard-vicuna-uncensored";
+        public string ModelName { get; set; } = "llama2:13b";//"wizard-vicuna-uncensored";
         public string NegativePrompt { get; set; } = "I am";
         private object PrepareRequest(string prompt, string? context = null, int length = 200, bool stream = false)
         {
@@ -23,7 +23,7 @@ namespace Konspector.Services
                 "prompt":"Why is the sky blue?"
             }'
             */
-            string? sys = PROMPT_UA;//PROMPT_EN; TODO: move to settings
+            string? sys = PROMPT_EN;//PROMPT_EN; TODO: move to settings
             if (context != null)
             {
                 sys += context;

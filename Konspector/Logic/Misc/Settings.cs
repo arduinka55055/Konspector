@@ -2,6 +2,7 @@
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using Konspector.Models;
+using System.Diagnostics;
 namespace Konspector.Misc;
 
 public class Settings(ILoggerFactory logger)
@@ -11,20 +12,28 @@ public class Settings(ILoggerFactory logger)
     public string AppName => "Konspector";
     public string AppDirectory {
         get {
-            return Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" + AppName;
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\" + AppName;
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+            return path;
         }
     }
 
     public string DocumentsDirectory {
         get {
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + AppName;
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + AppName;
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+            return path;
         }
     }
     public SettingsModel GetAppSettings() { 
         string settingsPath = AppDirectory + "\\settings.json";
         if (File.Exists(settingsPath)) {
             string json = File.ReadAllText(settingsPath);
-            SettingsModel? sm = JsonSerializer.Deserialize<SettingsModel>(json);
+             SettingsModel? sm = JsonSerializer.Deserialize<SettingsModel>(json);
             if(sm == null){
                 logger.LogError($"Failed to read settings from file, probably invalid json: {settingsPath}");
                 //crash the app

@@ -1,0 +1,32 @@
+﻿@page "/settings"
+@using Konspector.Models
+@using Konspector.Misc
+@using Microsoft.AspNetCore.Components.Sections
+@inject Konspector.Misc.Settings settings
+@{
+    SettingsModel sm = settings.GetAppSettings();
+}
+
+<SectionContent SectionName="Title">
+   Налаштування
+</SectionContent>
+
+
+<div class="settings-content">
+    <div class="settings-main-container">
+        <span>
+            <span class="key">Documents Path</span>
+            <input type="text" class="value" @bind="sm.DefaultNoteDirectory" />
+        </span>
+        <span>
+            <span class="key">AI Server</span>
+            <input type="url" class="value" @bind="sm.AiServer" />
+        </span>
+        <span>
+            <span class="key">AI Password</span>
+            <input type="password" class="value" @bind="sm.AiPassword" />
+        </span>
+        <button @onclick="(e)=>settings.Save(sm)">Save</button>
+
+    </div>
+</div>

@@ -1,14 +1,35 @@
 ﻿@page "/textor"
+@inject Konspector.Storage.ProjectProvider pp
+@inject IJSRuntime JSRuntime
 
 @using Blazored.TextEditor
+@using Microsoft.AspNetCore.Components.Sections
+<SectionContent SectionName="Title">
+    Textor
+</SectionContent>
+
+
+@code {
+    Storage.MarkdownItem? chosenTextor = null;
+}
+@{
+    var Todos = pp.project.Notes;
+    if (chosenTextor == null)
+    {
+        chosenTextor = pp.project.Notes[0];
+    }
+
+    MarkupString firstcontent = (MarkupString)(pp.project.Notes.First().Content);
+
+}
 
 <div class="textor-content">
     <div class="textor-main-container">
         <div class="textor-panel">
-            <button class="textor-label">Textor</button>
-            <button class="textor-save"> <i class="fa fa-save"></i> </button>
-            <button class="textor-del"><i class="fa fa-trash"></i></button>
-            <button class="textor-add-panel"> <i class="fa fa-plus"></i> </button>
+            <input class="textor-label" type="text" @bind=chosenTextor.Title />
+            <!--<button class="textor-save"> <i class="fa fa-save"></i> </button>-->
+            <button class="textor-del" @onclick="(e)=>pp.project.Notes.Remove(chosenTextor)"><i class="fa fa-trash"></i></button>
+            <button class="textor-add-panel" @onclick="(e)=>pp.project.Notes.Add(new Konspector.Storage.MarkdownItem())"> <i class="fa fa-plus"></i> </button>
         </div>
 
 
@@ -43,10 +64,7 @@
                 </ToolbarContent>
 
                 <EditorContent>
-                    <h4>This Toolbar works with HTML</h4>
-                    <a href="http://BlazorHelpWebsite.com">
-                        BlazorHelpWebsite.com
-                    </a>
+                    @(firstcontent)
                 </EditorContent>
 
 
@@ -59,11 +77,12 @@
             Saved
         </div>
         <div class="textor-sidebar-list">
-            @for (int i = 0; i < 5; i++)
+            @foreach (var textor in pp.project.Notes)
             {
-                <div class="textor-sidebar-item">
+                var highlight = textor == chosenTextor ? "active" : "";
+                <div class="textor-sidebar-item @highlight" @onclick="()=>{GetHTML(chosenTextor);chosenTextor=textor;SetHTML(textor);}">
                     <i class="fa fa-file-text"></i>
-                    <div class="textor-sidebar-label">Filename</div>
+                    <div class="textor-sidebar-label">@textor.Title</div>
                 </div>
             }
         </div>
@@ -71,44 +90,38 @@
 </div>
 
 
-
-
-<br />
-<button class="btn btn-primary"
-        @onclick="GetHTML">
-    Get HTML
-</button>
-<button class="btn btn-primary"
-        @onclick="SetHTML">
-    Set HTML
-</button>
-<br />
-<div>
-    <br />
-    @((MarkupString)QuillHTMLContent)
-    @QuillHTMLContent
-</div>
-<br />
-
 @code {
 
-    public BlazoredTextEditor QuillHtml;
-    string QuillHTMLContent;
+    public BlazoredTextEditor QuillHtml = new BlazoredTextEditor();
 
-    public async void GetHTML()
+    public async void GetHTML(Storage.MarkdownItem textor)
     {
-        QuillHTMLContent = await this.QuillHtml.GetHTML();
-        StateHasChanged();
+        try
+        {
+            string QuillHTMLContent = await this.QuillHtml.GetHTML();
+            textor.Content = QuillHTMLContent;
+            pp.saveProject();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("s");
+        }
+    }
+    public async void SetHTML(Storage.MarkdownItem textor)
+    {
+        try
+        {
+            string QuillContent = textor?.Content ?? "Empty here. Write the note now!";
+            await this.QuillHtml.LoadHTMLContent(QuillContent);
+            StateHasChanged();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("s");
+        }
     }
 
-    public async void SetHTML()
-    {
-        string QuillContent =
-            @"<a href='http://BlazorHelpWebsite.com/'>" +
-            "<img src='images/BlazorHelpWebsite.gif' /></a>";
+  
 
-        await this.QuillHtml.LoadHTMLContent(QuillContent);
-        StateHasChanged();
-    }
 }
 

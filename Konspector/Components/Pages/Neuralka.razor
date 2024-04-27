@@ -1,20 +1,68 @@
 ﻿
 @page "/neuralka"
+@using Microsoft.AspNetCore.Components.Sections
+<SectionContent SectionName="Title">
+   Neuralka
+</SectionContent>
+
 
  <div class="chat-container">
         <div class="chat">
-            <div class="chat-message user-message">
-                User: Hello, ChatGPT!
+        @if (conversations.Count == 0)
+        {
+            <div class="chat-message">
+               Start the conversatiion now!
             </div>
+        }
+        @for(int i=0; i< conversations.Count; i++)
+        {
+            
+            string classTxt = i % 2 == 0 ? "user-message" : "bot-message";
+            string user = i % 2 == 0 ? "You" : "Neuralka";
+            
             <div class="chat-message bot-message">
-                
-                ChatGPT: Hi there! How can I assist you today?
+                @(user): @foreach(var p in conversations[i].Split("\n"))
+                {
+                    @p <br />
+                }
             </div>
-            <!-- Add more chat messages here -->
+        }
         </div>
         <div class="chat-input">
-            <input type="text" placeholder="Type a message..." />
-            <button>Send</button>
+            <input type="text" placeholder="Type a message..." @bind=prompt/>
+            <button @onclick=lol disabled="@isRunning">Send</button>
         </div>
     </div>
 
+@code{
+    private List<string> conversations = new List<string>();
+    CancellationTokenSource cts = new CancellationTokenSource();
+    bool isRunning = false;
+    string prompt = "";
+
+
+    private async void lol()
+    {
+        if (!isRunning){
+            conversations.Add(prompt);
+            conversations.Add("");
+            isRunning = true;
+        }
+
+        Interfaces.ITextGenerator generator = new Services.OllamaGenerator();
+        await generator.GenerateTextS(prompt, async (System.Text.StringBuilder sb) =>
+        {
+            int last = conversations.Count - 1;
+            conversations[last] =  sb.ToString();
+            StateHasChanged();
+            await Task.Yield();
+        }, cts.Token, "help me");
+
+        isRunning = false;
+        //indicate that the operation is complete
+        cts.Dispose();
+        cts = new CancellationTokenSource();
+        //update the UI
+        StateHasChanged();
+    }
+}

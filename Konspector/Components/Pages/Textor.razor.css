@@ -1,6 +1,7 @@
 ﻿.textor-content {
    display: flex;
    height: 100vh;
+   background: rgb(224, 224, 224);
 }
 
 .textor-main-container {
@@ -54,14 +55,26 @@ ql-toolbar {
 
 .textor-sidebar-list {
    padding: 10px;
+   display: flex;
+   flex-direction: column;
+   gap:5px;
 }
 
 .textor-sidebar-item {
    display: flex;
    align-items: center;
-   margin-bottom: 10px;
+   padding: 8px;
+   border-radius: 2px;
 }
 
 .textor-sidebar-label {
    margin-left: 10px;
+}
+
+
+.textor-sidebar-item:hover {
+   background-color: RGBA(0,0,255,0.02);
+}
+.active {
+   background-color: RGBA(0,0,255,0.1) !important;
 }

@@ -19,6 +19,8 @@ public class SettingsModel
     // AI settings
     public bool AiAssistanceEnabled { get; set; }
     public bool AiUseContextEnabled { get; set; }
+    public string AiServer{ get; set; } = "https://coursework.sudohub.dev/";
+    public string AiPassword { get; set; } = "password";
     public string AiLanguage { get; set; } = "English";
 
     // Markdown settings

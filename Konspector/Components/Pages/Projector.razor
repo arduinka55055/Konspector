@@ -1,5 +1,6 @@
 ﻿@page "/projector"
 @using System.Text.Json
+@using Microsoft.AspNetCore.Components.Sections
 @inject Konspector.Storage.ProjectProvider pp
 @inject IJSRuntime JSRuntime
 
@@ -7,25 +8,24 @@
     var Kanbans = pp.project.Kanbans;
 }
 
+<SectionContent SectionName="Title">
+   Projector
+</SectionContent>
+
+
 <div class="projector-content">
-    <div class="projector-main-container"  @onmouseup="(e)=>HandleMouseUp(e)" @onmousemove="(e)=>onmousemove(e)">
-        <div class="projector-panel">
-            <button class="projector-label">Projector</button>
-            <button class="projector-save"><i class="fa fa-save"></i></button>
-            <button class="projector-del"><i class="fa fa-trash"></i></button>
-            <button class="projector-add-panel"><i class="fa fa-plus"></i></button>
-        </div>
+    <div class="projector-main-container" @onmouseup="(e)=>HandleMouseUp(e)" @onmousemove="(e)=>onmousemove(e)">
         <div class="projector-editor">
             <div class="projector-add-column">
-                <button class="projector-add-column-button">Add Column</button>
+                <button class="projector-add-column-button" @onclick="(e)=>{Kanbans.Add(new Storage.KanbanColumn());}">+ Add Column</button>
             </div>
-            <div class="main">
+            <div class="main"> 
                 @foreach (var kanban in Kanbans)
                 {
                     <div class="kanban-column">
                         <div class="kanban-column-header">
                             <div class="kanban-column-title">@kanban.Title</div>
-                            <div class="kanban-column-delete"><i class="fa fa-trash"></i></div>
+                            <div class="kanban-column-delete" @onclick="(e)=>{Kanbans.Remove(kanban);}"><i class="fa fa-trash"></i></div>
                         </div>
                         <div class="kanban-column-body" id="@kanban.GetHashCode()">
                             @foreach (var item in kanban.Items)
@@ -33,34 +33,18 @@
                                 <div class="kanban-item" draggable="false" id="@(item.GetHashCode())" 
                                 @onmousedown="(e)=>HandleMouseDown(kanban, item)">
                                     <div class="kanban-item-head">
-                                        <span>@item.Title</span>
-                                        <div class="kanban-item-edit">icon here</div>
+                                        <input type="text" class="kanban-editable" @bind=item.Title disabled="@isDrag"/>
+                                        <div class="kanban-item-delete" @onclick="(e)=>{kanban.Items.Remove(item);}"><i class="fa fa-trash"></i></div>
                                     </div>
-                                    <div class="kanban-item-delete">icon here</div>
                                 </div>
                             }
                         </div>
                         <div class="kanban-column-footer">
-                            <button class="kanban-add-item">+ Add Item</button>
+                            <button class="kanban-add-item" @onclick="(e)=>{kanban.Items.Add(new Storage.KanbanItem());}">+ Add Item</button>
                         </div>
                     </div>
                 }
             </div>
-        </div>
-    </div>
-
-    <div class="projector-sidebar">
-        <div class="projector-sidebar-head">
-            Saved
-        </div>
-        <div class="projector-sidebar-list">
-            @for (int i = 0; i < 5; i++)
-            {
-                <div class="projector-sidebar-item">
-                    <i class="fa fa-file-text"></i>
-                    <div class="projector-sidebar-label">Filename</div>
-                </div>
-            }
         </div>
     </div>
 </div>
@@ -100,6 +84,8 @@
     }
 
     document.body.addEventListener('mouseup', function (e) {
+        //check page name
+        //if (document.querySelector(".projector-label") == null) return;
         console.log('mouseup');
         console.log(window.movingEl);
         window.movingEl.style.position = '';
@@ -133,8 +119,10 @@
 @code {
     private Storage.KanbanItem? rememberKanban = null;
     private Storage.KanbanColumn? rememberColumn = null;
+    private bool isDrag = false;
     private void HandleMouseDown(Storage.KanbanColumn column, Storage.KanbanItem item)
     {
+        if (!isDrag) return;
         rememberKanban = item;
         rememberColumn = column;
         JSRuntime.InvokeVoidAsync("grab", item.GetHashCode());

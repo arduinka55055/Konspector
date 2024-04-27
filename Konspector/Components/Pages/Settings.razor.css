@@ -1,0 +1,40 @@
+.settings-content {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100%;
+   color: #fff;
+}
+
+.settings-main-container {
+   width: 50%; /* Adjust width as needed */
+   padding: 20px;
+   background-color: #2A3559;
+   border-radius: 10px;
+   height: 70vh;
+}
+
+   .settings-main-container>span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 5px;
+      margin-bottom: 10px; /* Space between items */
+      border-bottom: 1px solid #ccc; /* Line under items */
+   }
+
+.key {
+   width: 30%; /* Adjust label width as needed */
+   text-align: left;
+   margin-right: 10px; /* Space between label and field */
+}
+
+.value {
+   width: 70%; /* Adjust field width as needed */
+}
+
+button {
+   margin-top: 20px; /* Space above the button */
+   padding: 10px 20px; /* Button padding */
+   cursor: pointer; /* Pointer cursor on hover */
+}

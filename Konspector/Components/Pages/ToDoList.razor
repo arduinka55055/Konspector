@@ -1,5 +1,9 @@
 ﻿@page "/todolist"
 @inject Konspector.Storage.ProjectProvider pp
+@using Microsoft.AspNetCore.Components.Sections
+<SectionContent SectionName="Title">
+    To Do List
+</SectionContent>
 
 @code {
     Storage.TodoList? chosenTodo = null;
@@ -15,10 +19,8 @@
 <div class="todo-content">
     <div class="todo-main-container">
         <div class="todo-panel">
-            <button class="todo-label">Todos for today</button>
-            <button class="todo-add-panel"> <i class="fa fa-plus"></i> </button>
-            <button class="todo-save"> <i class="fa fa-save"></i> </button>
-            <button class="todo-edit"> <i class="fa fa-edit"></i> </button>
+            <input class="todo-label" type="text" @bind=chosenTodo.Title/>
+            <button class="todo-add-panel" @onclick="(e)=>pp.project.Todos.Add(new Konspector.Storage.TodoList())"><i class="fa fa-plus"></i> </button>
         </div>
         <div class="todo-body">
             @foreach (var todo in chosenTodo.Items)
@@ -29,20 +31,22 @@
                     <button class="todo-delete" @onclick="()=>{chosenTodo.Items.Remove(todo); pp.saveProject();}"><i class="fa fa-trash"></i></button>
                 </div>
             }
-            <button @onclick="()=>{chosenTodo.Items.Add(new Konspector.Storage.TodoItem()); pp.saveProject();}">Add</button>
+            <button class="todo-add-item" @onclick="()=>{chosenTodo.Items.Add(new Konspector.Storage.TodoItem()); pp.saveProject();}">Add</button>
         </div>
     </div>
 
     <div class="todo-sidebar">
         @foreach(var todo in Todos.Where(t=>t!=chosenTodo)){
             <div class="todo-mini" >
-                <div class="todo-mini-label" @onclick="()=>{chosenTodo=todo;}">Summer holidays plan</div>
+                <div class="todo-mini-label" @onclick="()=>{chosenTodo=todo;}">@todo.Title
+                    <button class="todo-delete" @onclick="()=>{Todos.Remove(todo); chosenTodo=Todos[0];pp.saveProject();}"><i class="fa fa-trash"></i></button>
+                </div>
                 <div class="todo-mini-body">
                     @foreach (var item in todo.Items)
                     {
                         <div class="todo-item">
                             <input type="checkbox" class="todo-checkbox" disabled @bind="item.IsDone"/>
-                            <input type="text" class="todo-text" disabled @bind="item.Title"/>"
+                            <input type="text" class="todo-text" disabled @bind="item.Title"/>
                         </div>
                     }
                 </div>
