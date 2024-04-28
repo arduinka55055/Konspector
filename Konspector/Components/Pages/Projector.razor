@@ -9,7 +9,7 @@
 }
 
 <SectionContent SectionName="Title">
-   Projector
+    Projector
 </SectionContent>
 
 
@@ -17,9 +17,12 @@
     <div class="projector-main-container" @onmouseup="(e)=>HandleMouseUp(e)" @onmousemove="(e)=>onmousemove(e)">
         <div class="projector-editor">
             <div class="projector-add-column">
+                <span class="projector-mover">
+                    <input type="checkbox" @bind="isDrag" /> Переміщення
+                </span>
                 <button class="projector-add-column-button" @onclick="(e)=>{Kanbans.Add(new Storage.KanbanColumn());}">+ Add Column</button>
             </div>
-            <div class="main"> 
+            <div class="main">
                 @foreach (var kanban in Kanbans)
                 {
                     <div class="kanban-column">
@@ -30,12 +33,25 @@
                         <div class="kanban-column-body" id="@kanban.GetHashCode()">
                             @foreach (var item in kanban.Items)
                             {
-                                <div class="kanban-item" draggable="false" id="@(item.GetHashCode())" 
-                                @onmousedown="(e)=>HandleMouseDown(kanban, item)">
+                                <div class="kanban-item" draggable="false" id="@(item.GetHashCode())"
+                                     @onmousedown="(e)=>HandleMouseDown(kanban, item)">
                                     <div class="kanban-item-head">
-                                        <input type="text" class="kanban-editable" @bind=item.Title disabled="@isDrag"/>
+                                        @if(isDrag){
+                                            @item.Title
+                                        }
+                                        else
+                                        {
+                                            <input type="text" class="kanban-editable" @bind=item.Title />
+                                        }
                                         <div class="kanban-item-delete" @onclick="(e)=>{kanban.Items.Remove(item);}"><i class="fa fa-trash"></i></div>
                                     </div>
+                                    @if (isDrag)
+                                    {
+                                        @item.Description
+                                    }
+                                    else{
+                                        <textarea @bind=@item.Description></textarea>
+                                    }
                                 </div>
                             }
                         </div>
@@ -54,8 +70,7 @@
         return element.getBoundingClientRect();
     }
 
-    function grab(el)
-    {
+    function grab(el) {
         el = document.getElementById(el);
         window.movingEl = el;
         let box = el.getBoundingClientRect();
@@ -65,8 +80,7 @@
         el.style.position = 'absolute';
     }
 
-    function moveTo(el,x,y)
-    {
+    function moveTo(el, x, y) {
         el = document.getElementById(el);
         //debugger;
         let box = el.getBoundingClientRect();
@@ -74,8 +88,7 @@
         el.style.top = y - box.height / 2 + 'px';
     }
 
-    function release(el)
-    {
+    function release(el) {
         window.movingEl = null;
         el = document.getElementById(el);
         el.style.position = '';
@@ -87,23 +100,23 @@
         //check page name
         //if (document.querySelector(".projector-label") == null) return;
         console.log('mouseup');
-        console.log(window.movingEl);
-        window.movingEl.style.position = '';
-        window.movingEl.style.width = '';
-        window.movingEl.style.height = '';
-        window.movingEl = null;
+        if (window.movingEl != null) {
+            console.log(window.movingEl);
+            window.movingEl.style.position = '';
+            window.movingEl.style.width = '';
+            window.movingEl.style.height = '';
+            window.movingEl = null;
+        }
     });
 
-    function event2ParentColumn(el,x, y)
-    {
+    function event2ParentColumn(el, x, y) {
         el = document.getElementById(el);
         el.style.pointerEvents = 'none';
         var elTarget = document.elementFromPoint(x, y);
         el.style.pointerEvents = '';
         if (elTarget == null)
             return null;
-        while(elTarget && elTarget.classList && !elTarget.classList.contains('kanban-column-body'))
-        {
+        while (elTarget && elTarget.classList && !elTarget.classList.contains('kanban-column-body')) {
             console.log(elTarget);
             elTarget = elTarget.parentElement;
         }
@@ -114,7 +127,7 @@
         console.warn(elTarget.toString());
         return elTarget.id.toString();
     }
-    
+
 </script>
 @code {
     private Storage.KanbanItem? rememberKanban = null;
@@ -142,11 +155,12 @@
 
     private async void onmousemove(MouseEventArgs e)
     {
+        if (!isDrag) return;
         try
         {
             //call js onmousemove
             if (rememberKanban != null)
-            await JSRuntime.InvokeVoidAsync("moveTo", rememberKanban.GetHashCode(), e.ClientX, e.ClientY);
+                await JSRuntime.InvokeVoidAsync("moveTo", rememberKanban.GetHashCode(), e.ClientX, e.ClientY);
 
         }
         catch (Exception ex)
@@ -157,12 +171,13 @@
 
     private async void HandleMouseUp(MouseEventArgs e)
     {
+        if (!isDrag) return;
         try
         {
             if (rememberKanban != null && rememberColumn != null)
             {
                 //get element from point, then get it's KanbanColumn
-                var ColumnEl = await JSRuntime.InvokeAsync<string>("event2ParentColumn",rememberKanban.GetHashCode(), e.ClientX, e.ClientY);
+                var ColumnEl = await JSRuntime.InvokeAsync<string>("event2ParentColumn", rememberKanban.GetHashCode(), e.ClientX, e.ClientY);
                 var column = pp.project.Kanbans.FirstOrDefault(k => k.GetHashCode().ToString() == ColumnEl);
                 if (column == null)
                 {
@@ -190,10 +205,10 @@
                 List<double> positions = new List<double>();
                 foreach (var item in column.Items)
                 {
-                     //"{"x":280,"y":376,"width":236.95,"height":92,"top":376,"right":516.95,"bottom":468,"left":280}"
-                     Rect rect = await JSRuntime.InvokeAsync<Rect>("DOMRect", [item.GetHashCode()]);
-                     if (rect != null)
-                           positions.Add((double)(rect.bottom + 0* rect.height / 2));
+                    //"{"x":280,"y":376,"width":236.95,"height":92,"top":376,"right":516.95,"bottom":468,"left":280}"
+                    Rect rect = await JSRuntime.InvokeAsync<Rect>("DOMRect", [item.GetHashCode()]);
+                    if (rect != null)
+                        positions.Add((double)(rect.bottom + 0 * rect.height / 2));
                 }
                 double mouseY = e.ClientY;
                 int index = 0;

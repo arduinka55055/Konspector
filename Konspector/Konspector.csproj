@@ -20,8 +20,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <EnableDefaultCssItems>false</EnableDefaultCssItems>
         <Nullable>enable</Nullable>
-       <WindowsPackageType>None</WindowsPackageType>
 
+       <WindowsPackageType>None</WindowsPackageType>
         <!-- Display name -->
         <ApplicationTitle>Konspector</ApplicationTitle>
 

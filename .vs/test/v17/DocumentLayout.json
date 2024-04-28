@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "D:\\code\\Konspector\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\konspector.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\konspector.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\projector.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\pages\\projector.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\projector.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\pages\\projector.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\layout\\navmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\latest.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -21,14 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\latest.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\pages\\latest.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\projector.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\pages\\projector.razor.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\projector.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|solutionrelative:konspector\\components\\pages\\projector.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31441965-38B6-45EC-8A86-C8BC996CEC4B}|Konspector\\Konspector.csproj|d:\\code\\konspector\\konspector\\components\\pages\\todolist.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -81,70 +81,68 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 186,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 139,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "NavMenu.razor",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Components\\Layout\\NavMenu.razor",
               "RelativeDocumentMoniker": "Konspector\\Components\\Layout\\NavMenu.razor",
               "ToolTip": "D:\\code\\Konspector\\Konspector\\Components\\Layout\\NavMenu.razor",
               "RelativeToolTip": "Konspector\\Components\\Layout\\NavMenu.razor",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACYAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-27T22:52:02.242Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T22:52:02.242Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Projector.razor",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Projector.razor",
               "RelativeDocumentMoniker": "Konspector\\Components\\Pages\\Projector.razor",
               "ToolTip": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Projector.razor",
               "RelativeToolTip": "Konspector\\Components\\Pages\\Projector.razor",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAAACIAAAACAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABsAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-04-16T21:24:17.197Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Projector.razor.css",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Projector.razor.css",
               "RelativeDocumentMoniker": "Konspector\\Components\\Pages\\Projector.razor.css",
               "ToolTip": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Projector.razor.css",
               "RelativeToolTip": "Konspector\\Components\\Pages\\Projector.razor.css",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABwAAAARAAAA",
+              "ViewState": "AQIAAFEAAAAAAAAAAAAAAGIAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-16T21:22:57.207Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T21:22:57.207Z"
             }
           ]
         },
         {
-          "DockedWidth": 214,
+          "DockedWidth": 261,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Konspector",
+              "DocumentIndex": 0,
+              "Title": "Konspector.csproj",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Konspector.csproj",
               "RelativeDocumentMoniker": "Konspector\\Konspector.csproj",
-              "ToolTip": "D:\\code\\Konspector\\Konspector\\Konspector.csproj*",
-              "RelativeToolTip": "Konspector\\Konspector.csproj*",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAGAAAA",
+              "ToolTip": "D:\\code\\Konspector\\Konspector\\Konspector.csproj",
+              "RelativeToolTip": "Konspector\\Konspector.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2024-04-27T22:59:45.711Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Latest.razor.css",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Latest.razor.css",
               "RelativeDocumentMoniker": "Konspector\\Components\\Pages\\Latest.razor.css",
@@ -152,12 +150,11 @@
               "RelativeToolTip": "Konspector\\Components\\Pages\\Latest.razor.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-27T22:54:59.345Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T22:54:59.345Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "NavMenu.razor.css",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Components\\Layout\\NavMenu.razor.css",
               "RelativeDocumentMoniker": "Konspector\\Components\\Layout\\NavMenu.razor.css",
@@ -165,12 +162,11 @@
               "RelativeToolTip": "Konspector\\Components\\Layout\\NavMenu.razor.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-27T22:54:57.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T22:54:57.895Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Latest.razor",
               "DocumentMoniker": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Latest.razor",
               "RelativeDocumentMoniker": "Konspector\\Components\\Pages\\Latest.razor",
@@ -178,8 +174,7 @@
               "RelativeToolTip": "Konspector\\Components\\Pages\\Latest.razor",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAKAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-27T20:56:28.594Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T20:56:28.594Z"
             },
             {
               "$type": "Document",
@@ -191,8 +186,7 @@
               "RelativeToolTip": "Konspector\\Storage\\Kanban.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-27T20:40:07.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T20:40:07.313Z"
             },
             {
               "$type": "Document",
@@ -204,8 +198,7 @@
               "RelativeToolTip": "Konspector\\Components\\Pages\\Neuralka.razor",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-27T15:14:13.35Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T15:14:13.35Z"
             },
             {
               "$type": "Document",
@@ -215,10 +208,9 @@
               "RelativeDocumentMoniker": "Konspector\\wwwroot\\css\\app.css",
               "ToolTip": "D:\\code\\Konspector\\Konspector\\wwwroot\\css\\app.css",
               "RelativeToolTip": "Konspector\\wwwroot\\css\\app.css",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAAAEUAAAABAAAA",
+              "ViewState": "AQIAACoAAAAAAAAAAIBJwEUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-27T15:09:19.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-27T15:09:19.186Z"
             },
             {
               "$type": "Document",
@@ -230,8 +222,7 @@
               "RelativeToolTip": "Konspector\\wwwroot\\index.html",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-04-16T21:51:42.574Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T21:51:42.574Z"
             },
             {
               "$type": "Document",
@@ -243,8 +234,7 @@
               "RelativeToolTip": "Konspector\\Storage\\ProjectProvider.cs",
               "ViewState": "AQIAAA8AAAAAAAAAAAAiwCYAAACUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T12:40:17.343Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-22T12:40:17.343Z"
             },
             {
               "$type": "Document",
@@ -256,8 +246,7 @@
               "RelativeToolTip": "Konspector\\Components\\Pages\\ToDoList.razor",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-16T21:03:34.057Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T21:03:34.057Z"
             },
             {
               "$type": "Document",
@@ -269,8 +258,7 @@
               "RelativeToolTip": "Konspector\\Storage\\Todo.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T12:36:53.159Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-22T12:36:53.159Z"
             },
             {
               "$type": "Document",
@@ -280,10 +268,9 @@
               "RelativeDocumentMoniker": "Konspector\\Components\\Pages\\Neuralka.razor.css",
               "ToolTip": "D:\\code\\Konspector\\Konspector\\Components\\Pages\\Neuralka.razor.css",
               "RelativeToolTip": "Konspector\\Components\\Pages\\Neuralka.razor.css",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAADQAAAAUAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAIBJwDQAAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-16T21:23:14.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T21:23:14.693Z"
             },
             {
               "$type": "Document",
@@ -295,8 +282,7 @@
               "RelativeToolTip": "Konspector\\obj\\Debug\\net8.0-windows10.0.19041.0\\win10-x64\\Platforms\\Windows\\App.g.i.cs",
               "ViewState": "AQIAAC0AAAAAAAAAAAAuwDwAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T14:31:44.138Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-22T14:31:44.138Z"
             },
             {
               "$type": "Document",
@@ -306,10 +292,9 @@
               "RelativeDocumentMoniker": "Konspector\\Logic\\Models\\SettingsModel.cs",
               "ToolTip": "D:\\code\\Konspector\\Konspector\\Logic\\Models\\SettingsModel.cs",
               "RelativeToolTip": "Konspector\\Logic\\Models\\SettingsModel.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAzwBEAAAAAAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T12:23:36.567Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-22T12:23:36.567Z"
             },
             {
               "$type": "Document",
@@ -321,8 +306,7 @@
               "RelativeToolTip": "Konspector\\Components\\Pages\\Login.razor.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-04-16T21:23:28.916Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-16T21:23:28.916Z"
             }
           ]
         }

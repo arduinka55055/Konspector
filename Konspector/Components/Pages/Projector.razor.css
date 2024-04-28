@@ -59,6 +59,8 @@
 .kanban-column-header {
    border-top-left-radius: 5px;
    border-top-right-radius: 5px;
+   display: flex;
+   justify-content: space-between;
 }
 
 .kanban-column-body {
@@ -89,6 +91,14 @@
 .projector-sidebar-head {
    padding: 10px;
    background-color: #e0e0e0;
+}
+
+.projector-mover {
+   margin-right: 15px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   gap: 5px;
 }
 
 .projector-sidebar-list {
@@ -131,4 +141,8 @@ button {
 .kanban-editable:active{
    border: none;
    background: none;
+}
+
+textarea {
+   background-color: inherit;
 }
