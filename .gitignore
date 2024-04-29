@@ -6,3 +6,4 @@ credentials*
 #exclude Content.txt
 !Content.txt
 .vs
+.DS_Store
